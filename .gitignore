@@ -1,7 +1,8 @@
 log/*.log
 tmp/**/*
-config/database.yml
+db/schema.rb
 db/*.sqlite3
 .project
 .loadpath
 coverage/**/*
+
