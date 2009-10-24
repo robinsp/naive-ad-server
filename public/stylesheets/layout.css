@@ -1,0 +1,54 @@
+* {margin:0;padding:0;} 
+
+/* must declare 0 margins on everything, also for main layout components use padding, not 
+vertical margins (top and bottom) to add spacing, else those margins get added to total height 
+and your footer gets pushed down a bit more, creating vertical scroll bars in the browser */
+html, body, #wrap {
+	height: 100%;
+}
+
+body {
+	font-size: 62.5%;
+	font-family: Tahoma,sans-serif;
+	color: #575757;
+	background: #606060;
+}
+
+body > #wrap {
+	height: auto; 
+	min-height: 100%;
+	background-color: #ffffff;
+	width: 80%;
+	margin: 0 auto;
+	
+}
+
+#main {
+	padding-bottom: 5em; /* must be same height as the footer */
+}  
+
+#header {
+	height: 5em;
+	text-align: center;
+}
+
+#footer {
+	position: relative;
+	margin-top: -5em; /* negative value of footer height */
+	height: 5em;
+	clear:both;
+	text-align: center;
+} 
+
+/* CLEAR FIX*/
+.clearfix:after {content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;}
+.clearfix {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
