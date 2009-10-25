@@ -2,11 +2,15 @@ require 'spec_helper'
 
 describe "/banner_ads/impressions/create" do
   before(:each) do
+    @banner_ad = Factory(:banner_ad)
+    assigns[:banner_ad] = @banner_ad
     render 'banner_ads/impressions/create'
   end
 
-  #Delete this example and add some real ones or delete this file
-  it "should tell you where to find the file" do
-    response.should have_tag('p', %r[Find me in app/views/banner_ads/impressions/create])
+  it "should have an image with a click link" do
+    response.should have_tag("a[href=?]", click_ad_url(@banner_ad) ) do 
+      with_tag "img[src=?]", @banner_ad.source_for_image_tag
+    end
   end
+  
 end
