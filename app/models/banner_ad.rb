@@ -2,7 +2,7 @@ UnsupportedOperationError = Class.new(StandardError)
 IllegalArgumentError = Class.new(StandardError)
 
 class BannerAd < ActiveRecord::Base
-  FILE_STORAGE_DIR = "#{RAILS_ROOT}/public"
+  FILE_STORAGE_DIR = "#{RAILS_ROOT}/public/images"
   validates_presence_of :filename
   
   def before_save
