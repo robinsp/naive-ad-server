@@ -17,9 +17,7 @@ describe BrowserCookieAgent do
     
     it "should return the browser id set in cookie" do
       expected_browser_id = 1234
-      @cookies_stub.expects(:[]).with(BrowserCookieAgent::BROWSER_ID_COOKIE_NAME).returns(cookie_string = "fake")
-      
-      CGI::Cookie.expects(:parse).with(cookie_string).returns( {:browser_id => expected_browser_id} )
+      @cookies_stub.expects(:[]).with(BrowserCookieAgent::BROWSER_ID_COOKIE_NAME).returns(expected_browser_id)
       BrowserCookieAgent.browser_id(@controller).should == expected_browser_id
     end
   end
