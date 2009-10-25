@@ -1,5 +1,4 @@
 
-UnsupportedOperationError = Class.new(StandardError)
 IllegalArgumentError = Class.new(StandardError)
 BannerAdStats = Struct.new(:impression_count, :contact_count, :click_count, :unique_click_count)
 
@@ -40,6 +39,7 @@ class BannerAd < ActiveRecord::Base
     return new_ad
   end
   
+  ############################################
   private 
   
   attr_accessor :created_with_class_method
