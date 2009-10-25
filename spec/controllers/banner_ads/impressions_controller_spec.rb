@@ -13,28 +13,32 @@ describe BannerAds::ImpressionsController do
     end
     
     it "should be successful" do
-      get 'create', :banner_ad_id => 1
+      run_create_action
       response.should be_success
     end
     
     it "should lookup BannerAd" do
       BannerAd.expects(:find).with(expected_banner_ad_id = '1234').returns(@mock_banner_ad)
-      get 'create', :banner_ad_id => expected_banner_ad_id
+      get :create, :banner_ad_id => expected_banner_ad_id
     end
     
     it "should ask for Browser" do 
       @controller.expects(:browser_instance).returns(@mock_browser)
-      get 'create', :banner_ad_id => 1
+      run_create_action
     end
     
     it "should create Impression" do 
       Impression.expects(:create).with(:banner_ad => @mock_banner_ad, :browser => @mock_browser)
-      get 'create', :banner_ad_id => 1
+      run_create_action
     end
     
     it "should not use layout" do 
-      get 'create', :banner_ad_id => 1
+      run_create_action
       response.layout.should be_nil
+    end
+    
+    def run_create_action
+      get :create, :banner_ad_id => 1
     end
   end
   
