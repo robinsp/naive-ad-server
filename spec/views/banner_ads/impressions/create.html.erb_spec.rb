@@ -8,7 +8,7 @@ describe "/banner_ads/impressions/create" do
   end
 
   it "should have an image with a click link" do
-    response.should have_tag("a[href=?]", click_ad_url(@banner_ad) ) do 
+    response.should have_tag("a[href=?][target='_blank']", click_ad_url(@banner_ad) ) do 
       with_tag "img[src=?]", @banner_ad.source_for_image_tag
     end
   end
