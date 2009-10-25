@@ -31,6 +31,11 @@ describe BannerAds::ImpressionsController do
       Impression.expects(:create).with(:banner_ad => @mock_banner_ad, :browser => @mock_browser)
       get 'create', :banner_ad_id => 1
     end
+    
+    it "should not use layout" do 
+      get 'create', :banner_ad_id => 1
+      response.layout.should be_nil
+    end
   end
   
   describe "custom_urls" do

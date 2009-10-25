@@ -5,6 +5,7 @@ class BannerAds::ImpressionsController < ApplicationController
   
   def create
     Impression.create(:banner_ad =>  @banner_ad, :browser => self.browser_instance)
+    render :layout => false
   end
 
   private 
