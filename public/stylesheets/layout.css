@@ -24,7 +24,7 @@ body > #wrap {
 }
 
 #main {
-	padding-bottom: 5em; /* must be same height as the footer */
+	padding: 2em 2em 5em 2em;
 }  
 
 #header {
@@ -52,3 +52,7 @@ body > #wrap {
 * html .clearfix { height: 1%;}
 .clearfix {display: block;}
 /* End hide from IE-mac */
+
+td {
+	text-align: center;
+}
