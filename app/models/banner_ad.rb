@@ -11,6 +11,10 @@ class BannerAd < ActiveRecord::Base
     end
   end
   
+  def source_for_image_tag 
+    "/images/#{id}_#{filename}"
+  end
+  
   def self.create_from_upload(filename, file_content)
     raise IllegalArgumentError.new("An UploadedFile is required") if file_content.nil?
     

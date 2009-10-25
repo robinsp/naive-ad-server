@@ -21,6 +21,15 @@ describe BannerAd do
     BannerAd.new(:filename => "").valid?.should be_false
   end
   
+  describe "source_for_image_tag()" do 
+    it "should provide file name for image_tag use" do 
+      @file_stub = stub_everything
+      File.stubs(:new).returns(@file_stub)
+      ad = BannerAd.create_from_upload(@filename = "myfile.ext", "file contents")
+      ad.source_for_image_tag.should == "/images/#{ad.id}_#{@filename}"
+    end
+  end
+  
   describe "self.create_from_upload" do
     before do 
       @filename = "filename.ext"

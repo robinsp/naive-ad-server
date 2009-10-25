@@ -5,7 +5,7 @@ describe "/banner_ads/show" do
     
     assigns[:banner_ad] = 
       stub_everything :id => (@banner_id = 1234), 
-                      :filename => (@banner_filename = "a-file.ext") 
+                      :source_for_image_tag => (@banner_filename = "/some/location/file.ext") 
                       
     render 'banner_ads/show'
   end
@@ -15,6 +15,6 @@ describe "/banner_ads/show" do
   end
   
   it "should display the banner ad image" do 
-    response.should have_tag("img[src=?]", '/images/' + @banner_filename)
+    response.should have_tag("img[src=?]", @banner_filename)
   end
 end
