@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :banner_ads
+  map.resources :banner_ads do |ads|
+    ads.resources :impressions, :shallow => true
+  end
+  
   
   map.root :controller => 'banner_ads'
 
