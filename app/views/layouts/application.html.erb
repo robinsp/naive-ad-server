@@ -13,7 +13,10 @@
 
 <div id="wrap">
 	<div id="header">
-		<p>Header</p>
+		<ul id="mainNav">
+			<%= content_tag :li, link_to("Banners Ads (and stats)", banner_ads_url) %>
+			<%= content_tag :li, link_to("New Banner Ad", new_banner_ad_url) %>
+		</ul>
 	</div>
 	<div id="main" class="clearfix">
 		<%= yield %>
@@ -22,7 +25,7 @@
 </div>
 
 <div id="footer">
-	<p>Footer</p>
+	<p>&nbsp;</p>
 </div>
 
 

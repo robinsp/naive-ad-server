@@ -56,3 +56,15 @@ body > #wrap {
 td {
 	text-align: center;
 }
+
+#mainNav {
+	padding: 1em;
+	list-style: none;
+	margin: 0;
+}
+
+
+#mainNav li {
+	float: left;
+	padding-left: 1em;
+}
