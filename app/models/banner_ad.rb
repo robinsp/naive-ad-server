@@ -5,12 +5,6 @@ class BannerAd < ActiveRecord::Base
   FILE_STORAGE_DIR = "#{RAILS_ROOT}/public/images"
   validates_presence_of :filename
   
-  def before_save
-    unless @created_with_class_method
-      raise UnsupportedOperationError.new("Use BannerAd.create_from_upload(uploaded_file) to create")
-    end
-  end
-  
   def source_for_image_tag 
     "/images/#{id}_#{filename}"
   end

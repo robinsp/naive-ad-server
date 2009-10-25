@@ -4,17 +4,6 @@ describe BannerAd do
   before(:each) do
     @valid_attributes = { :filename => "filename.ext"}
   end
-
-  it "should not allow the normal save operations" do
-    [:create, :create!].each do |op|
-      lambda { BannerAd.send(op, @valid_attributes) }.should raise_error(UnsupportedOperationError)
-    end
-    
-    new_ad = BannerAd.new( @valid_attributes )
-    [:save, :save!].each do |op|
-      lambda { new_ad.send(op) }.should raise_error
-    end
-  end
   
   it "should require filename" do 
     BannerAd.new(:filename => nil).valid?.should be_false
