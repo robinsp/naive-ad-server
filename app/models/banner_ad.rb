@@ -1,12 +1,25 @@
+
 UnsupportedOperationError = Class.new(StandardError)
 IllegalArgumentError = Class.new(StandardError)
+BannerAdStats = Struct.new(:impression_count, :contact_count, :click_count, :unique_click_count)
 
 class BannerAd < ActiveRecord::Base
   FILE_STORAGE_DIR = "#{RAILS_ROOT}/public/images"
+  
+  has_many :impressions
+  has_many :browsers_that_have_displayed, :through => :impressions, :source => :browser
+  
+  has_many :clicks
+  has_many :browsers_that_have_clicked, :through => :clicks, :source => :browser
+  
   validates_presence_of :filename
   
   def source_for_image_tag 
     "/images/#{id}_#{filename}"
+  end
+  
+  def stats
+    BannerAdStats.new( impression_count, contact_count, click_count, unique_click_count )
   end
   
   def self.create_from_upload(filename, file_content)
@@ -30,4 +43,20 @@ class BannerAd < ActiveRecord::Base
   private 
   
   attr_accessor :created_with_class_method
+  
+  def impression_count
+    impressions.count
+  end
+  
+  def contact_count 
+    browsers_that_have_displayed.count(:id, :distinct => true)
+  end
+  
+  def click_count
+    clicks.count
+  end
+  
+  def unique_click_count
+    browsers_that_have_clicked.count(:id, :distinct => true)
+  end
 end

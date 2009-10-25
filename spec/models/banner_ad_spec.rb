@@ -10,6 +10,52 @@ describe BannerAd do
     BannerAd.new(:filename => "").valid?.should be_false
   end
   
+  describe "stats" do 
+    before do 
+      @banner_ad = Factory(:banner_ad)
+      @browser_a = Factory(:browser)
+      @browser_b = Factory(:browser)
+    end
+
+    it "should calc number of impressions per browser" do 
+      @banner_ad.impressions.create(:browser => @browser_a)
+      @banner_ad.stats.contact_count.should == 1
+      
+      @banner_ad.impressions.create(:browser => @browser_a)
+      @banner_ad.stats.contact_count.should == 1
+      
+      @banner_ad.impressions.create(:browser => @browser_b)
+      @banner_ad.stats.contact_count.should == 2
+    end
+    
+    it "should calc number of impressions" do
+      @banner_ad.impressions.create(:browser => @browser_a)
+      @banner_ad.impressions.create(:browser => @browser_a)
+      @banner_ad.impressions.create(:browser => @browser_b)
+      
+      @banner_ad.stats.impression_count.should == 3
+    end
+    
+    it "should calc number of clicks" do 
+      @banner_ad.clicks.create(:browser => @browser_a)
+      @banner_ad.clicks.create(:browser => @browser_b)
+      @banner_ad.clicks.create(:browser => @browser_a)
+      @banner_ad.stats.click_count.should == 3
+    end
+    
+    it "should calc number of clicks per browser" do 
+      @banner_ad.clicks.create(:browser => @browser_a)
+      @banner_ad.stats.unique_click_count.should == 1
+      
+      @banner_ad.clicks.create(:browser => @browser_a)
+      @banner_ad.stats.unique_click_count.should == 1
+      
+      @banner_ad.clicks.create(:browser => @browser_b)
+      @banner_ad.stats.unique_click_count.should == 2
+    end
+    
+  end
+  
   describe "source_for_image_tag()" do 
     it "should provide file name for image_tag use" do 
       @file_stub = stub_everything

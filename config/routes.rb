@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :banner_ads do |ads|
     ads.resources :impressions, :shallow => true
+    ads.resources :clicks, :shallow => true
   end
   
   
