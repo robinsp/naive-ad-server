@@ -1,2 +1,22 @@
-<h1>BannerAds#index</h1>
-<p>Find me in app/views/banner_ads/index.html.erb</p>
+<h1>Banner Ad stats</h1>
+
+<table>
+	<thead>
+		<th>Ad</th>
+		<th>Impressions</th>
+		<th>Contacts</th>
+		<th>Clicks</th>
+		<th>Unique Clicks</th>
+	</thead>
+	<tbody>
+		<% @banner_ads.each do |ad| %>
+			<tr>
+				<%= content_tag :td, link_to("#{ad.id} (#{ad.filename}) ", banner_ad_url(ad) ) %>
+				<%= content_tag :td, ad.stats.impression_count %>
+				<%= content_tag :td, ad.stats.contact_count %>
+				<%= content_tag :td, ad.stats.click_count %>
+				<%= content_tag :td, ad.stats.unique_click_count %>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
