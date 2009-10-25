@@ -32,4 +32,11 @@ describe BannerAds::ImpressionsController do
       get 'create', :banner_ad_id => 1
     end
   end
+  
+  describe "custom_urls" do
+    it "should have a custom url for client use" do 
+      assert_routing "/a/20899.iframe", 
+        {:method => :get, :controller => 'banner_ads/impressions', :action => 'create', :banner_ad_id => '20899'}
+    end
+  end
 end

@@ -32,4 +32,11 @@ describe BannerAds::ClicksController do
     end
   end
   
+  describe "custom_urls" do
+    it "should have a custom url for client use" do 
+      assert_routing "/a/20899.click", 
+        {:method => :get, :controller => 'banner_ads/clicks', :action => 'create', :banner_ad_id => '20899'}
+    end
+  end
+  
 end

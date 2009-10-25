@@ -3,7 +3,11 @@ ActionController::Routing::Routes.draw do |map|
     ads.resources :impressions, :shallow => true
     ads.resources :clicks, :shallow => true
   end
-  
+
+  map.with_options(:method => :get, :action => 'create') do |opts|
+    opts.show_ad  '/a/:banner_ad_id.iframe',  :controller => 'banner_ads/impressions'
+    opts.click_ad '/a/:banner_ad_id.click',   :controller => 'banner_ads/clicks'
+  end
   
   map.root :controller => 'banner_ads'
 
