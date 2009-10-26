@@ -1,0 +1,32 @@
+== Installation ==
+
+Requires basic ruby-on-rails knowledge and that the following requirements are met:
+  Ruby (1.8), Ruby Gems, rake
+
+This Rails based ad server uses a file database and most of the components used have 
+been "vendored in" to avoid as much configuration trouble as possible. 
+However, the sqlite3-ruby gem requires local binaries to be present and has been left
+out of the vendor tree.
+
+1. To make sure sqlite3 is properly installed, run the following command in RAILS_ROOT:
+  
+  sudo rake gems:install
+  
+If any errors occur you should find an 'apt-get' command that will install the required Ubuntu
+packages. (Most likely 'sudo apt-get install sqlite3 libsqlite3-dev')
+Re-run 'sudo rake gems:install' after this.
+
+2. Set up database the database with: 
+
+  rake db:migrate
+  
+3. Start server with:
+
+  ./script/server
+  
+You should now be able to browse to http://localhost:3000 and create your ads.
+Remember to use the port in your iframe urls when testing the from the "publishing end"!
+
+== Specs ==
+
+The specs are of course run with 'rake spec'
