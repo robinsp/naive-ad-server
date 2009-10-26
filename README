@@ -30,3 +30,9 @@ Remember to use the port in your iframe urls when testing the from the "publishi
 == Specs ==
 
 The specs are of course run with 'rake spec'
+
+I have included an html version of a spec run that is a bit easier on the eye compared to source 
+when you only want to get an overview of which classes and modules handles what responsiblitities.
+
+  RAILS_ROOT/specs.html
+
